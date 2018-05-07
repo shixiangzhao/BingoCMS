@@ -4,13 +4,14 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
-		<groupId>com.shixzh.distributed</groupId>
+		<groupId>com.shixzh.bcms</groupId>
 		<artifactId>BingoCMS</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.shixzh.distributed</groupId>
+	<groupId>com.shixzh.bcms</groupId>
 	<artifactId>bcms-framework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bcms-framework</name>
@@ -23,10 +24,11 @@
 	<dependencies>
 		<!-- A depend on B or B depend on A -->
 		<dependency>
-			<groupId>com.shixzh.distributed</groupId>
+			<groupId>com.shixzh.bcms</groupId>
 			<artifactId>bcms-po</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

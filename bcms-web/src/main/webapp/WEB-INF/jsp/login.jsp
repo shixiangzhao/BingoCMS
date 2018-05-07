@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>main.jsp</title>
+<title>login</title>
 </head>
 
 <c:set var="ctx"
 	value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" />
 <script type="text/javascript"
-	src="${ctx}/plugins/jquery-3.0.0/jquery-3.0.0.js"></script>
+	src="${ctx}/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 	
 </script>
