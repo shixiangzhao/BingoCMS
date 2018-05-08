@@ -1,9 +1,35 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1" metadata-complete="true">
 
-<web-app>
 	<display-name>Archetype Created Web Application</display-name>
+	<!-- 执行优先级: context-param > listener > filter >servlet > interceptor -->
+	<!-- 由于spring-controller.xml位于外部模块中，直接引入不了 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/spring-controller.xml</param-value>
+	</context-param>
+
+	<!-- 配置logback -->
+	<context-param>
+		<param-name>logbackConfigLocation</param-name>
+		<param-value>classpath:logback.xml</param-value>
+	</context-param>
+
+	<!-- 如果没有，context-param中所配置的外部模块中的xml不起作用 -->
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+<!-- 
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+ -->
+	<listener>
+		<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+	</listener>
 
 	<listener>
 		<listener-class>com.shixzh.bcms.framework.listener.MyHttpSessionListener</listener-class>
@@ -35,9 +61,9 @@
 		<filter-name>loginFilter</filter-name>
 		<filter-class>com.shixzh.bcms.framework.filter.LoginFilter</filter-class>
 		<init-param>
-			<!-- 不进行过滤的url，因为它就是跳转到登陆界面, -->
+			<!-- 不进行过滤的url，因为它就是跳转到登陆界面 -->
 			<param-name>excludeUrl</param-name>
-			<param-value>/main</param-value>
+			<param-value>/system/view</param-value>
 		</init-param>
 		<init-param>
 			<!-- 未登录用户跳转的url -->
@@ -45,5 +71,18 @@
 			<param-value>/system/login</param-value>
 		</init-param>
 	</filter>
+
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/spring-web.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>

@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 public class UrlEncodeFilter implements Filter {
 
-	Logger logger = LoggerFactory.getLogger(UrlEncodeFilter.class);
+	private static final Logger logger = LoggerFactory.getLogger(UrlEncodeFilter.class);
 	Map<String, Object> paramMap = new HashMap<String, Object>();
 
 	@Override
@@ -27,16 +27,19 @@ public class UrlEncodeFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
-		System.out.println("urlEncodeFilter doFilter..." + paramMap.get("urlEncode").toString());
+		logger.info("UrlEncodeFilter -> doFilter start, urlEncode={}", paramMap.get("urlEncode").toString());
 		request.setCharacterEncoding(paramMap.get("urlEncode").toString());
 		filterChain.doFilter(request, response);
+		logger.info("UrlEncodeFilter -> doFilter end.");
 
 	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		logger.info("UrlEncodeFilter -> init start, filterConfig={}", filterConfig);
 		String urlEncode = filterConfig.getInitParameter("urlEncode");
 		paramMap.put("urlEncode", urlEncode);
+		logger.info("UrlEncodeFilter -> init end, paramMap.get(urlEncode)={}", paramMap.get("urlEncode"));
 	}
 
 }

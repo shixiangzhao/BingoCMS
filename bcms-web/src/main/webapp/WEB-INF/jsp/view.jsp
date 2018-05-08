@@ -6,6 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>view jsp</title>
 </head>
-<body>用户已经登陆，欢迎来到登陆后系统主界面
+<body>Welcome to main page!
 </body>
 </html>

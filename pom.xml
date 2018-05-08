@@ -9,6 +9,17 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<modules>
+		<module>bcms-service</module>
+		<module>bcms-controller</module>
+		<module>bcms-dao</module>
+		<module>bcms-po</module>
+		<module>bcms-dto</module>
+		<module>bcms-framework</module>
+		<module>bcms-service-api</module>
+		<module>bcms-web</module>
+	</modules>
+
 	<name>BingoCMS</name>
 	<url>http://maven.apache.org</url>
 
@@ -22,7 +33,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
 		<dependency>
@@ -42,6 +52,22 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.0.5.RELEASE</version>
 		</dependency>
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.0.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>5.0.5.RELEASE</version>
+        </dependency>
+		<dependency>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-spring</artifactId>
+			<version>0.1.4</version>
+			<scope>compile</scope>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
@@ -49,6 +75,12 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>runtime</scope>
+		</dependency> 
 
 
 		<dependency>
@@ -58,15 +90,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<modules>
-
-		<module>bcms-service</module>
-		<module>bcms-controller</module>
-		<module>bcms-dao</module>
-		<module>bcms-po</module>
-		<module>bcms-dto</module>
-		<module>bcms-framework</module>
-		<module>bcms-service-api</module>
-		<module>bcms-web</module>
-	</modules>
 </project>

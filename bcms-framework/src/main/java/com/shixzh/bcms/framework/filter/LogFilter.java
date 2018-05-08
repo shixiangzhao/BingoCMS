@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 public class LogFilter implements Filter {
 
-	Logger logger = LoggerFactory.getLogger(LogFilter.class);
+	private static final Logger logger = LoggerFactory.getLogger(LogFilter.class);
 
 	@Override
 	public void destroy() {
@@ -25,10 +25,11 @@ public class LogFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
+		logger.info("LogFilter -> doFilter start...");
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-		System.out.println("logFilter doFilter servletPath:" + httpServletRequest.getRemoteHost());
+		logger.info("logFilter doFilter servletPath:" + httpServletRequest.getRemoteHost());
 		filterChain.doFilter(httpServletRequest, response);
-
+		logger.info("LogFilter -> doFilter end.");
 	}
 
 	@Override

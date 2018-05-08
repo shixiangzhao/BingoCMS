@@ -15,7 +15,7 @@
 	<artifactId>bcms-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>bcms-web Maven Webapp</name>
+	<name>bcms-web</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
@@ -34,5 +34,6 @@
 	</dependencies>
 	<build>
 		<finalName>bcms-web</finalName>
+
 	</build>
 </project>
