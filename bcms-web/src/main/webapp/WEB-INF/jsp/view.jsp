@@ -18,6 +18,6 @@
 <body>
 	This is view jsp!
 	<br>
-	<a href="${pageContext.request.contextPath}/system/login">login</a>
+	<a href="${ctx}/system/login">login</a>
 </body>
 </html>

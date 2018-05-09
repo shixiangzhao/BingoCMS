@@ -21,8 +21,8 @@ public class LoginFilter implements Filter {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginFilter.class);
 
-	private String dispatchUrl = "";
-	private String excludeUrl = "";
+	private String toLoginUrl = "";
+	private String loginUrl = "";
 
 	@Override
 	public void destroy() {
@@ -32,23 +32,26 @@ public class LoginFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
-		logger.info("LoginFilter -> doFilter start, dispatchUrl = " + dispatchUrl + ", excludeUrl = " + excludeUrl);
+		logger.info("LoginFilter -> doFilter start, toLoginUrl ={}, loginUrl={}", toLoginUrl, loginUrl);
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		String servletPath = request.getServletPath();
+		logger.info("LoginFilter -> doFilter, servletPath={}", servletPath);
 
 		HttpSession session = request.getSession();
 		String sessionKey = (String) session.getAttribute(Constant.SESSIONKEY);
 		logger.info("LoginFilter -> doFilter sessionKey=" + sessionKey);
 
-		/* 登陆界面不进行过滤 */
-		if (servletPath.equals(dispatchUrl) || servletPath.equals(excludeUrl)) {
+		// 登陆界面不进行过滤
+		if (servletPath.equals(toLoginUrl) || servletPath.equals(loginUrl)) {
 			filterChain.doFilter(request, response);
-			logger.info("Do filter end.");
+			logger.info("This is login page, doFilter end.");
 		} else {
 			if (!StringUtils.isEmpty(sessionKey)) {//登陆过的用户
 				filterChain.doFilter(request, response);
+				logger.info("You have login, sessionKey={}", sessionKey);
 			} else {//未登录则跳转到登陆页面
-				request.getRequestDispatcher(dispatchUrl).forward(request, response);
+				request.getRequestDispatcher(toLoginUrl).forward(request, response);
+				logger.info("Please go to login page, toLoginUrl={}", toLoginUrl);
 			}
 		}
 
@@ -57,9 +60,9 @@ public class LoginFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		logger.info("LoginFilter -> init, param={}", filterConfig);
-		dispatchUrl = filterConfig.getInitParameter("dispatchUrl");
-		excludeUrl = filterConfig.getInitParameter("excludeUrl");
-		logger.info("LoginFilter -> init, dispatchUrl = " + dispatchUrl + ", excludeUrl = " + excludeUrl);
+		toLoginUrl = filterConfig.getInitParameter("toLoginUrl");
+		loginUrl = filterConfig.getInitParameter("loginUrl");
+		logger.info("LoginFilter -> init, toLoginUrl ={}, loginUrl={}", toLoginUrl, loginUrl);
 	}
 
 }

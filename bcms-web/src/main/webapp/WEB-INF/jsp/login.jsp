@@ -18,6 +18,6 @@
 <body>
 	This is login jsp!
 	<br>
-	<a href="${pageContext.request.contextPath}/system/index">index</a>
+	<a href="${ctx}/system/index">index</a>
 </body>
 </html>
