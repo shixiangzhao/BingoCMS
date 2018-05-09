@@ -5,19 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login</title>
+<title>login page</title>
 </head>
 
 <c:set var="ctx"
 	value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" />
-<script type="text/javascript"
-	src="${ctx}/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="${ctx}/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 	
 </script>
 
 <body>
-	This is has login jsp
-	<a href="/WEB-INF/jsp/view">view</a>
+	This is login jsp!
+	<br>
+	<a href="${pageContext.request.contextPath}/system/index">index</a>
 </body>
 </html>

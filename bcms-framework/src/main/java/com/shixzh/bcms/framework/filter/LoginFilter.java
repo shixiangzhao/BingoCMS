@@ -32,7 +32,7 @@ public class LoginFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse response, FilterChain filterChain)
 			throws IOException, ServletException {
-		logger.info("LoginFilter -> doFilter start...");
+		logger.info("LoginFilter -> doFilter start, dispatchUrl = " + dispatchUrl + ", excludeUrl = " + excludeUrl);
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		String servletPath = request.getServletPath();
 
@@ -40,17 +40,14 @@ public class LoginFilter implements Filter {
 		String sessionKey = (String) session.getAttribute(Constant.SESSIONKEY);
 		logger.info("LoginFilter -> doFilter sessionKey=" + sessionKey);
 
-		/* 就是登陆界面不进行过滤 */
+		/* 登陆界面不进行过滤 */
 		if (servletPath.equals(dispatchUrl) || servletPath.equals(excludeUrl)) {
-			logger.info("LoginFilter -> doFilter in filter dispatchUrl = " + dispatchUrl + " and excludeUrl = "
-					+ excludeUrl);
 			filterChain.doFilter(request, response);
+			logger.info("Do filter end.");
 		} else {
-			logger.info("LoginFilter -> doFilter not in filter dispatchUrl = " + dispatchUrl
-					+ " and excludeUrl = " + excludeUrl);
-			if (!StringUtils.isEmpty(sessionKey)) {
+			if (!StringUtils.isEmpty(sessionKey)) {//登陆过的用户
 				filterChain.doFilter(request, response);
-			} else {
+			} else {//未登录则跳转到登陆页面
 				request.getRequestDispatcher(dispatchUrl).forward(request, response);
 			}
 		}
