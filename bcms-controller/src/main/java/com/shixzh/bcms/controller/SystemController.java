@@ -5,17 +5,33 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.shixzh.bcms.service.SystemService;
+
 @Controller
 @RequestMapping(value = "/system")
 public class SystemController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SystemController.class);
+
+	@Autowired
+	private SystemService systemService;
+
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public String view(@RequestParam(name = "name", required = false, defaultValue = "world") String name,
+			Model model) {
+		logger.info("SystemAction -> view start...");
+		systemService.toLogin();
+		model.addAttribute("msg", name);
+		logger.info("SystemAction -> view end, model={}", model);
+		return "view";
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request) {
@@ -25,15 +41,6 @@ public class SystemController {
 		session.setAttribute("sessionKey", "test");
 		logger.info("SystemAction -> login end.");
 		return "login";
-	}
-
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(@RequestParam(name = "name", required = false, defaultValue = "world") String name,
-			Model model) {
-		logger.info("SystemAction -> view start...");
-		model.addAttribute("msg", name);
-		logger.info("SystemAction -> view end, model={}", model);
-		return "view";
 	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
