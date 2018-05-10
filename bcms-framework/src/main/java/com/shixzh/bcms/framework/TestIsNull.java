@@ -2,6 +2,7 @@ package com.shixzh.bcms.framework;
 
 public class TestIsNull {
 
+	@SuppressWarnings("null")
 	public static void main(String[] args) {
 
 		// getXXX进行二次逻辑的，一定要判空
