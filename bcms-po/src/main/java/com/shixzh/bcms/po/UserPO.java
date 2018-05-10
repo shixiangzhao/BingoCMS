@@ -3,7 +3,7 @@ package com.shixzh.bcms.po;
 public class UserPO {
 
 	private Long userId;
-	private String name;
+	private String userName;
 
 	public Long getUserId() {
 		return userId;
@@ -13,17 +13,17 @@ public class UserPO {
 		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + "]";
+		return "UserPO [userId=" + userId + ", userName=" + userName + "]";
 	}
 
 }

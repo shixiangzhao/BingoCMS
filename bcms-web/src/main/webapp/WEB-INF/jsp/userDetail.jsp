@@ -4,6 +4,6 @@
 <title>user detail page</title>
 </head>
 <body>
-	<h2>Hello, ${userPO.name}</h2>
+	<h2>Hello, ${userPO.userName}</h2>
 </body>
 </html>

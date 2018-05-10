@@ -11,10 +11,10 @@
 
     <!-- 2: 数据库连接池 -->
     <!-- 读写数据源-->
-    <bean id="writeDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    <bean id="writeDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!-- 配置连接池属性 -->
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bcms?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bcms?useSSL=false&amp;serverTimezone=Hongkong&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
         <property name="user" value="root"/>
         <property name="password" value="root"/>
 

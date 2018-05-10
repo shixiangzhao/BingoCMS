@@ -25,7 +25,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<mysql.mysql-connector-java.version>5.1.40</mysql.mysql-connector-java.version>
+		<mysql.mysql-connector-java.version>8.0.11</mysql.mysql-connector-java.version>
 		<org.springframework.spring.version>5.0.5.RELEASE</org.springframework.spring.version>
 		<org.slf4j.slf4j-api.version>1.7.25</org.slf4j.slf4j-api.version>
 		<org.logback-extensions.logback-ext-spring.version>0.1.4</org.logback-extensions.logback-ext-spring.version>
@@ -130,7 +130,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.mysql-connector-java.version}</version>
-			<scope>runtime</scope>
+			<!-- <scope>runtime</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>c3p0</groupId>
@@ -151,6 +151,11 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
 				</plugin>
 				<!-- 跳过单元测试插件 -->
 				<plugin>
