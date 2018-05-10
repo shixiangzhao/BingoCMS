@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shixzh.bcms.dao.UserDao" >
+  <resultMap id="BaseResultMap" type="com.shixzh.bcms.po.UserPO" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	user_id, name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.shixzh.bcms.po.UserPO">
+  	SELECT
+  	<include refid="Base_Column_List" />
+  	FROM user WHERE user_id = #{userId}
+  </select>
+</mapper>
