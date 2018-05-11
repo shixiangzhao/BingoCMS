@@ -13,4 +13,40 @@
   	<include refid="Base_Column_List" />
   	FROM user WHERE user_id = #{userId}
   </select>
+  <select id="listUser" parameterType="com.shixzh.bcms.po.UserPO" resultType="java.util.List">
+  	SELECT
+  	<include refid="Base_Column_List" />
+  	FROM user
+  	<trim prefix="WHERE" prefixOverrides="AND | OR" >
+  		<if test="userName != null">
+  			AND user_name LIKE CONCAT('%', #{uerName}, '%')
+  		</if>
+  	</trim>
+  </select>
+  <insert id="addUser" parameterType="com.shixzh.bcms.po.UserPO">
+  	INSERT INTO user
+  	<trim prefix="(" suffix=")" suffixOverrides=",">
+  		<if test="userName != null">
+  			user_name,
+  		</if>
+  	</trim>
+  	<trim prefix="VALUE (" suffix=")" suffixOverrides=",">
+  		<if test="userName != null">
+  			#{userName},
+  		</if>
+  	</trim>
+  </insert>
+  <update id="updateUser" parameterType="com.shixzh.bcms.po.UserPO">
+  	UPDATE user
+  	<set>
+  		<if test="userName != null">
+  			user_name = #{userName},
+  		</if>
+  	</set>
+  	WHERE user_id = #{userId}
+  </update>
+  <delete id="deleteUser" parameterType="java.lang.Long">
+  	DELETE FROM user
+  	WHERE user_id = #{userId}
+  </delete>
 </mapper>

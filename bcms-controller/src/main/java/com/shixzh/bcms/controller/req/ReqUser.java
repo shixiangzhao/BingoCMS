@@ -1,16 +1,9 @@
-package com.shixzh.bcms.po;
+package com.shixzh.bcms.controller.req;
 
-public class UserPO {
+public class ReqUser {
 
 	private Long userId;
 	private String userName;
-
-	public UserPO() {
-	}
-
-	public UserPO(String userName) {
-		this.userName = userName;
-	}
 
 	public Long getUserId() {
 		return userId;
