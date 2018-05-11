@@ -5,29 +5,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login page</title>
+<title>user update page</title>
 </head>
 
 <c:set var="ctx"
 	value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" />
 <script type="text/javascript" src="${ctx}/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-	
+
 </script>
 
 <body>
-	This is login jsp!
+	This is user update jsp!
 	<br>
-	<a href="${ctx}/user/list">返回</a>
-	<form action="/user/update" method="post">
+	<a href="${ctx}/system/index">返回</a>
+	<form action="${ctx}/user/update" method="post">
 		<table>
 			<tr>
 				<td>姓名：</td>
-				<td><input type="text" name="userName" value="${userPO.userName}"/></td>
+				<td><input type="hidden" name="userId" value="${userPO.userId}" />
+					<input type="text" name="userName" value="${userPO.userName}" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" name="提交"/></td>
-				<td><input type="reset" name="重置"/></td>
+				<td><input type="submit" name="提交" /></td>
+				<td><input type="reset" name="重置" /></td>
 			</tr>
 		</table>
 	</form>

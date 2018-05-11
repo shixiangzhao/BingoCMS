@@ -13,6 +13,14 @@
 <body>
 	<h2>Hello, ${msg}</h2>
 	<br>
-	<a href="${ctx}/user/detail/1">用户详情</a>
+	<form action="${ctx}/user/list" method="post">
+		<table>
+			<tr>
+				<td>姓名模糊查询：</td>
+				<td><input name="userName" value=""/></td>
+				<td><input type="submit" name="查询"/></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

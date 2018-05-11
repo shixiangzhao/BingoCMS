@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login page</title>
+<title>user add page</title>
 </head>
 
 <c:set var="ctx"
@@ -16,18 +16,18 @@
 </script>
 
 <body>
-	This is login jsp!
+	This is user add jsp!
 	<br>
-	<a href="${ctx}/user/list">返回</a>
-	<form action="/user/add" method="post">
+	<a href="${ctx}/system/index">返回</a>
+	<form action="${ctx}/user/add" method="post">
 		<table>
 			<tr>
 				<td>姓名：</td>
-				<td><input type="text" name="userName"/></td>
+				<td><input type="text" name="userName" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" name="提交"/></td>
-				<td><input type="reset" name="重置"/></td>
+				<td><input type="submit" name="提交" /></td>
+				<td><input type="reset" name="重置" /></td>
 			</tr>
 		</table>
 	</form>

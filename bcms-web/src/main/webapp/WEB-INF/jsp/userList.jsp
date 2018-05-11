@@ -18,23 +18,24 @@
 <body>
 	This is user list jsp!
 	<br>
-	<a href="${ctx}/system/index">index</a>
 	<table>
 		<thead>
 			<tr>
 				<td>编号</td>
 				<td>姓名</td>
+				<td></td>
+				<td></td>
+				<td><a href="${ctx}/user/toAdd">新增</a></td>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="userPOs" var="user">
+			<c:forEach items="${userPOs}" var="user">
 				<tr>
 					<td>${user.userId}</td>
 					<td>${user.userName}</td>
 					<td><a href="${ctx}/user/detail/${user.userId}">查看</a></td>
-					<td><a href="${ctx}/WEB-INF/jsp/userAdd.jsp">新增</a></td>
-					<td><a href="${ctx}/user/toUpdate">更新</a></td>
-					<td><a href="${ctx}/user/delete">删除</a></td>
+					<td><a href="${ctx}/user/toUpdate/${user.userId}">更新</a></td>
+					<td><a href="${ctx}/user/delete/${user.userId}">删除</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

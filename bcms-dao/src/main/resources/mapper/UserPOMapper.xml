@@ -13,13 +13,13 @@
   	<include refid="Base_Column_List" />
   	FROM user WHERE user_id = #{userId}
   </select>
-  <select id="listUser" parameterType="com.shixzh.bcms.po.UserPO" resultType="java.util.List">
+  <select id="listUser" parameterType="com.shixzh.bcms.po.UserPO" resultType="com.shixzh.bcms.po.UserPO">
   	SELECT
   	<include refid="Base_Column_List" />
   	FROM user
   	<trim prefix="WHERE" prefixOverrides="AND | OR" >
   		<if test="userName != null">
-  			AND user_name LIKE CONCAT('%', #{uerName}, '%')
+  			AND user_name LIKE CONCAT('%', #{userName}, '%')
   		</if>
   	</trim>
   </select>
