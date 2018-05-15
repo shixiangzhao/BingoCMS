@@ -16,7 +16,7 @@
 </script>
 
 <body>
-	This is login jsp!
+	<p>您已登陆</p>
 	<br>
 	<a href="${ctx}/system/index">index</a>
 </body>

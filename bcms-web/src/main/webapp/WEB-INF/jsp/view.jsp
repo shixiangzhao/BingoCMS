@@ -16,7 +16,7 @@
 </script>
 
 <body>
-	This is view jsp!
+	请登录：
 	<br>
 	<a href="${ctx}/system/login">login</a>
 </body>
