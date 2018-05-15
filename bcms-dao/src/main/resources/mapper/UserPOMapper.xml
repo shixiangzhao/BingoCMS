@@ -8,7 +8,7 @@
   <sql id="Base_Column_List">
 	user_id, user_name
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.shixzh.bcms.po.UserPO">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.shixzh.bcms.po.UserPO" flushCache="true">
   	SELECT
   	<include refid="Base_Column_List" />
   	FROM user WHERE user_id = #{userId}
