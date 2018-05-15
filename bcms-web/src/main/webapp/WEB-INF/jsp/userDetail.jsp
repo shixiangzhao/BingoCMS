@@ -5,5 +5,7 @@
 </head>
 <body>
 	<h2>Hello, ${userPO.userName}</h2>
+	<br>
+	<p>You age is ${userPO.userAge}</p>
 </body>
 </html>

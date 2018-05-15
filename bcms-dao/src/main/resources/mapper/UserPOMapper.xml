@@ -4,22 +4,29 @@
   <resultMap id="BaseResultMap" type="com.shixzh.bcms.po.UserPO" >
     <id column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List">
-	user_id, user_name
+	user_id, user_name, user_age
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.shixzh.bcms.po.UserPO" flushCache="true">
   	SELECT
   	<include refid="Base_Column_List" />
   	FROM user WHERE user_id = #{userId}
   </select>
-  <select id="listUser" parameterType="com.shixzh.bcms.po.UserPO" resultType="com.shixzh.bcms.po.UserPO">
+  <select id="listUser" parameterType="com.shixzh.bcms.po.UserPO" resultType="com.shixzh.bcms.po.UserPO" flushCache="true">
   	SELECT
   	<include refid="Base_Column_List" />
   	FROM user
   	<trim prefix="WHERE" prefixOverrides="AND | OR" >
   		<if test="userName != null">
   			AND user_name LIKE CONCAT('%', #{userName}, '%')
+  		</if>
+  		<if test="userAgeStart != null">
+  			AND user_age >= ${userAgeStart}
+  		</if>
+  		<if test="userAgeEnd != null">
+  			AND user_age <![CDATA[ <= ]]> ${userAgeEnd}
   		</if>
   	</trim>
   </select>
@@ -29,10 +36,16 @@
   		<if test="userName != null">
   			user_name,
   		</if>
+  		<if test="userAge != null">
+  			user_age,
+  		</if>
   	</trim>
   	<trim prefix="VALUE (" suffix=")" suffixOverrides=",">
   		<if test="userName != null">
   			#{userName},
+  		</if>
+  		<if test="userAge != null">
+  			#{userAge},
   		</if>
   	</trim>
   </insert>
@@ -41,6 +54,9 @@
   	<set>
   		<if test="userName != null">
   			user_name = #{userName},
+  		</if>
+  		<if test="userAge != null">
+  			user_age = #{userAge},
   		</if>
   	</set>
   	WHERE user_id = #{userId}

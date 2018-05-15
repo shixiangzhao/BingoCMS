@@ -2,7 +2,6 @@ package com.shixzh.bcms.service.impl;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +62,7 @@ public class UserServiceImpl implements UserService {
 	@SuppressWarnings("finally")
 	@Override
 	public Integer updateUserTestDirtyRead(UserPO userPO) {
-		logger.info("UserServiceImpl -> updateUser, userPO={}", userPO);
+		logger.info("UserServiceImpl -> updateUserTestDirtyRead, userPO={}", userPO);
 		try {
 			updateUser(userPO);
 			// sleep 10s
@@ -79,6 +78,21 @@ public class UserServiceImpl implements UserService {
 	public List<UserPO> listUser(UserPO userPO) {
 		logger.info("UserServiceImpl -> listUser, userPO={}", userPO);
 		return userDao.listUser(userPO);
+	}
+
+	@Override
+	public List<UserPO> listUserTestPhantomRead(UserPO userPO) {
+		logger.info("UserServiceImpl -> listUserTestPhantomRead, userPO={}", userPO);
+		List<UserPO> lst = listUser(userPO);
+		logger.info("UserServiceImpl -> listUserTestPhantomRead, List<UserPO> lst={}", lst);
+		try {
+			Thread.sleep(THREAD_SLEEP_MILLIS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		List<UserPO> lst2 = listUser(userPO);
+		logger.info("UserServiceImpl -> listUserTestPhantomRead, List<UserPO> lst2={}", lst);
+		return lst2;
 	}
 
 }

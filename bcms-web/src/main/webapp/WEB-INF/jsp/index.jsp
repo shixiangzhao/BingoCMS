@@ -18,6 +18,10 @@
 			<tr>
 				<td>姓名模糊查询：</td>
 				<td><input name="userName" value=""/></td>
+				<td>年龄上限：</td>
+				<td><input name="userAgeStart" value="15"/></td>
+				<td>年龄下限：</td>
+				<td><input name="userAgeEnd" value="16"/></td>
 				<td><input type="submit" name="查询"/></td>
 			</tr>
 		</table>

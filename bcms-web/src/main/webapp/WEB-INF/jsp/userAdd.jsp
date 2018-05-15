@@ -16,14 +16,17 @@
 </script>
 
 <body>
-	This is user add jsp!
+	<a href="${ctx}/system/index">返回主页</a>
 	<br>
-	<a href="${ctx}/system/index">返回</a>
 	<form action="${ctx}/user/add" method="post">
 		<table>
 			<tr>
 				<td>姓名：</td>
 				<td><input type="text" name="userName" /></td>
+			</tr>
+			<tr>
+				<td>年龄：</td>
+				<td><input type="text" name="userAge" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" name="提交" /></td>

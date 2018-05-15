@@ -24,4 +24,6 @@ public interface UserService {
 	UserPO getByUserIdTestDirtyRead(Long userId);
 
 	Integer updateUserTestDirtyRead(UserPO userPO);
+
+	List<UserPO> listUserTestPhantomRead(UserPO userPO);
 }

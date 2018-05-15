@@ -34,9 +34,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addUser(@RequestParam("userName") String userName, Model model) {
+	public String addUser(@RequestParam("userName") String userName, @RequestParam("userAge") Integer userAge,
+			Model model) {
 		logger.info("UserController -> addUser start...");
-		UserPO userPO = new UserPO(userName);
+		UserPO userPO = new UserPO(userName, userAge);
 		Integer isAdd = userServce.addUser(userPO);
 		logger.info("UserController -> addUser end.");
 		model.addAttribute("isAdd", isAdd);
@@ -46,10 +47,10 @@ public class UserController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateUser(@RequestParam("userId") Long userId, @RequestParam("userName") String userName,
-			Model model) {
+			@RequestParam("userAge") Integer userAge, Model model) {
 		logger.info("UserController -> updateUser start...");
 		UserPO userPO = new UserPO(userId, userName);
-		Integer isUpdate = userServce.updateUserTestDirtyRead(userPO);
+		Integer isUpdate = userServce.updateUser(userPO);
 		logger.info("UserController -> updateUser end.");
 		model.addAttribute("isUpdate", isUpdate);
 		model.addAttribute("msg", "success");
@@ -67,10 +68,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public String listUser(@RequestParam("userName") String userName, Model model) {
+	public String listUser(@RequestParam("userName") String userName,
+			@RequestParam("userAgeStart") Integer userAgeStart, @RequestParam("userAgeEnd") Integer userAgeEnd, Model model) {
 		logger.info("UserController -> listUser start, userName={}", userName);
-		UserPO userPO = new UserPO(userName);
-		List<UserPO> userPOs = userServce.listUser(userPO);
+		UserPO userPO = new UserPO(userName, userAgeStart, userAgeEnd);
+		List<UserPO> userPOs = userServce.listUserTestPhantomRead(userPO);
 		logger.info("UserController -> listUser end.");
 		model.addAttribute("msg", "success");
 		model.addAttribute("userPOs", userPOs);

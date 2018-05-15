@@ -16,15 +16,18 @@
 </script>
 
 <body>
-	This is user update jsp!
+	<a href="${ctx}/system/index">返回主页</a>
 	<br>
-	<a href="${ctx}/system/index">返回</a>
 	<form action="${ctx}/user/update" method="post">
 		<table>
 			<tr>
 				<td>姓名：</td>
 				<td><input type="hidden" name="userId" value="${userPO.userId}" />
 					<input type="text" name="userName" value="${userPO.userName}" /></td>
+			</tr>
+			<tr>
+				<td>年龄：</td>
+				<td><input type="text" name="userAge" value="${userPO.userAge}" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" name="提交" /></td>
