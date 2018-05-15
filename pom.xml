@@ -30,6 +30,7 @@
 		<org.slf4j.slf4j-api.version>1.7.25</org.slf4j.slf4j-api.version>
 		<org.logback-extensions.logback-ext-spring.version>0.1.4</org.logback-extensions.logback-ext-spring.version>
 		<org.aspectj.aspectjrt.version>1.8.13</org.aspectj.aspectjrt.version>
+		<org.aspectj.aspectjweaver.version>1.8.0</org.aspectj.aspectjweaver.version>
 		<org.mybatis.mybatis.version>3.4.4</org.mybatis.mybatis.version>
 		<org.mybatis.mybatis-spring.version>1.3.1</org.mybatis.mybatis-spring.version>
 		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
@@ -94,11 +95,16 @@
 			<artifactId>spring-aop</artifactId>
 			<version>${org.springframework.spring.version}</version>
 		</dependency>
-		<!-- aspectjrt 依赖 -->
+		<!-- aspectjrt和aspectjweaver 依赖 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj.aspectjrt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj.aspectjweaver.version}</version>
 		</dependency>
 
 		<!-- DAO框架：MyBatis依赖 -->

@@ -15,20 +15,66 @@
 	default-autowire="byName">
 
 	<!-- 扫描service包下所有使用注解的类型 -->
-	<context:component-scan base-package="com.shixzh.bcms.service" />
+	<context:component-scan
+		base-package="com.shixzh.bcms.service" />
 
 	<!-- 引入Dao配置 -->
 	<import resource="classpath:spring/spring-dao.xml" />
-<!-- 
-	<aop:config>
-		<aop:advisor pointcut="com.xyz.someapp.SystemArchitecture.businessService()"
-			advice-ref="tx-advice" />
+
+ 	<aop:config>
+		<aop:advisor
+			pointcut="com.shixzh.bcms.framework.aspect.SystemArchitecture.businessService()"
+			advice-ref="txAdvice" />
 	</aop:config>
 
-	<tx:advice id="tx-advice">
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="writeDataSource" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="add*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="create*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="insert*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="update*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="merge*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="del*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="remove*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="proc*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="batch*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception,java.lang.RuntimeException"
+				isolation="READ_COMMITTED" />
+			<tx:method name="put*" read-only="true" />
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="use*" read-only="true" />
+			<tx:method name="get*" read-only="true" isolation="READ_UNCOMMITTED" />
+			<tx:method name="count*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+
 			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
- -->
+
 </beans>

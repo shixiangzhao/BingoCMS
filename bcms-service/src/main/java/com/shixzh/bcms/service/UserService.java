@@ -20,4 +20,8 @@ public interface UserService {
 	Integer updateUser(UserPO userPO);
 
 	List<UserPO> listUser(UserPO userPO);
+
+	UserPO getByUserIdTestDirtyRead(Long userId);
+
+	Integer updateUserTestDirtyRead(UserPO userPO);
 }

@@ -27,11 +27,7 @@ public class UserController {
 	@RequestMapping(value = "/detail/{userId}", method = RequestMethod.GET)
 	public String getDetail(@PathVariable("userId") Long userId, Model model) {
 		logger.info("UserController -> getDetail, userId={}", userId);
-		if (!(userId instanceof Long)) {
-			logger.info("UserController -> getDetail, param is not Long.");
-			return "index";
-		}
-		UserPO userPO = userServce.getByUserId(userId);
+		UserPO userPO = userServce.getByUserIdTestDirtyRead(userId);
 		logger.info("UserController -> getDetail, userPO={}", userPO);
 		model.addAttribute("userPO", userPO);
 		return "userDetail";
@@ -49,11 +45,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateUser( @RequestParam("userId") Long userId, @RequestParam("userName") String userName,
+	public String updateUser(@RequestParam("userId") Long userId, @RequestParam("userName") String userName,
 			Model model) {
 		logger.info("UserController -> updateUser start...");
 		UserPO userPO = new UserPO(userId, userName);
-		Integer isUpdate = userServce.updateUser(userPO);
+		Integer isUpdate = userServce.updateUserTestDirtyRead(userPO);
 		logger.info("UserController -> updateUser end.");
 		model.addAttribute("isUpdate", isUpdate);
 		model.addAttribute("msg", "success");

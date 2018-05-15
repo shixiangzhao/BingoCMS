@@ -37,8 +37,9 @@ public class SystemController {
 	public String login(HttpServletRequest request) {
 		logger.info("SystemAction -> login start...");
 		HttpSession session = request.getSession();
+		int peopleOnLine = (int) session.getAttribute("peopleOnLine");
 		// 假设用户输入的用户名密码正确，则放入sessionKey中，对应的value可以 是User对象，这里以字符串"test"代替
-		session.setAttribute("sessionKey", "test");
+		session.setAttribute("sessionKey", "test" + peopleOnLine);
 		logger.info("SystemAction -> login end.");
 		return "login";
 	}

@@ -27,11 +27,11 @@
 	<listener>
 		<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
 	</listener>
-<!-- 
+
 	<listener>
 		<listener-class>com.shixzh.bcms.framework.listener.MyHttpSessionListener</listener-class>
 	</listener>
-
+<!-- 
 	<filter>
 		<filter-name>logFilter</filter-name>
 		<filter-class>com.shixzh.bcms.framework.filter.LogFilter</filter-class>

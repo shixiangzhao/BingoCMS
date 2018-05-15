@@ -15,6 +15,7 @@ import com.shixzh.bcms.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Long THREAD_SLEEP_MILLIS = 5000l;
 
 	@Autowired
 	private UserDao userDao;
@@ -23,6 +24,21 @@ public class UserServiceImpl implements UserService {
 	public UserPO getByUserId(Long userId) {
 		logger.info("UserServiceImpl -> getByUserId, userId={}", userId);
 		return userDao.selectByPrimaryKey(userId);
+	}
+
+	@Override
+	public UserPO getByUserIdTestDirtyRead(Long userId) {
+		logger.info("UserServiceImpl -> getByUserIdTestDirtyRead, userId={}", userId);
+		UserPO userPO = getByUserId(userId);
+		logger.warn("Get detail for the user {}, userPO={}", userId, userPO);
+		try {
+			Thread.sleep(THREAD_SLEEP_MILLIS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		UserPO userPO2 = getByUserId(userId);
+		logger.warn("Get detail for the user {}, userPO2={}", userId, userPO2);
+		return userPO2;
 	}
 
 	@Override
@@ -41,6 +57,21 @@ public class UserServiceImpl implements UserService {
 	public Integer updateUser(UserPO userPO) {
 		logger.info("UserServiceImpl -> updateUser, userPO={}", userPO);
 		return userDao.updateUser(userPO);
+	}
+
+	@SuppressWarnings("finally")
+	@Override
+	public Integer updateUserTestDirtyRead(UserPO userPO) {
+		logger.info("UserServiceImpl -> updateUser, userPO={}", userPO);
+		try {
+			updateUser(userPO);
+			// sleep 10s
+			Thread.sleep(THREAD_SLEEP_MILLIS);
+		} catch (RuntimeException | InterruptedException e) {
+			logger.error("There is a RuntimeException:", e);
+		} finally {
+			throw new RuntimeException();
+		}
 	}
 
 	@Override
