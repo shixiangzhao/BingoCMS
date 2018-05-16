@@ -71,8 +71,21 @@
 			<!-- <tx:method name="get*" read-only="true" propagation="REQUIRED" isolation="READ_UNCOMMITTED" /> -->
 			<tx:method name="count*" read-only="true" />
 			<tx:method name="find*" read-only="true" />
-			<tx:method name="list*" read-only="true" propagation="NOT_SUPPORTED" isolation="SERIALIZABLE" />
-			<!-- <tx:method name="list*" read-only="true" propagation="NOT_SUPPORTED" isolation="REPEATABLE_READ" /> -->
+			<!-- 在某个范围查找中，插入新的符合条件的行，测试幻读现象，结果：在事务存在的情况下，REPEATABLE_READ级别同样可以避免幻读，具有范围锁 -->
+			<!-- <tx:method name="list*" read-only="true" propagation="REQUIRED" isolation="SERIALIZABLE" /> 共享一个事务，序列化，始终一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="NOT_SUPPORTED" isolation="SERIALIZABLE" /> 非事务，序列化，出现不一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="REQUIRED" isolation="REPEATABLE_READ" /> 共享一个事务，可重复读，始终一致（异常）-->
+			<!-- <tx:method name="list*" read-only="true" propagation="REQUIRES_NEW" isolation="REPEATABLE_READ" /> 两个事务，可重复读，始终一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="NESTED" isolation="REPEATABLE_READ" /> 嵌套事务，可重复读，始终一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="SUPPORTS" isolation="REPEATABLE_READ" /> 非事务，可重复读，出现不一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="NOT_SUPPORTED" isolation="REPEATABLE_READ" /> 非事务，可重复读，出现不一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="NEVER" isolation="REPEATABLE_READ" /> 非事务，可重复读，出现不一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="MANDATORY" isolation="REPEATABLE_READ" /> 非事务，抛异常-->
+			<!-- <tx:method name="list*" read-only="true" propagation="REQUIRED" isolation="READ_COMMITTED" /> 共享一个事务，读取已提交，出现不一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="NOT_SUPPORTED" isolation="READ_COMMITTED" /> 非事务，读取已提交，出现不一致-->
+			<!-- <tx:method name="list*" read-only="true" propagation="REQUIRED" isolation="DEFAULT" /> 共享一个事务，数据库默认（可重复读），始终一致-->
+			<!-- <tx:method name="list*" read-only="true" isolation="DEFAULT" /> 默认REQUIRED，数据库默认（可重复读），始终一致-->
+			<tx:method name="list*" read-only="true" />
 			<tx:method name="select*" read-only="true" />
 
 			<tx:method name="*" propagation="REQUIRED" />

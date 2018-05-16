@@ -16,8 +16,7 @@
 </script>
 
 <body>
-	请登录：
-	<br>
+	<p>请登录：</p>
 	<a href="${ctx}/system/login">login</a>
 </body>
 </html>

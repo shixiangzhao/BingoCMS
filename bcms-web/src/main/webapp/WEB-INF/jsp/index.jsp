@@ -12,16 +12,15 @@
 <title>user detail page</title>
 <body>
 	<h2>Hello, ${msg}</h2>
-	<br>
 	<form action="${ctx}/user/list" method="post">
 		<table>
 			<tr>
-				<td>姓名模糊查询：</td>
+				<td>姓名：</td>
 				<td><input name="userName" value=""/></td>
-				<td>年龄上限：</td>
-				<td><input name="userAgeStart" value="15"/></td>
 				<td>年龄下限：</td>
-				<td><input name="userAgeEnd" value="16"/></td>
+				<td><input name="userAgeStart" value=""/></td>
+				<td>年龄上限：</td>
+				<td><input name="userAgeEnd" value=""/></td>
 				<td><input type="submit" name="查询"/></td>
 			</tr>
 		</table>

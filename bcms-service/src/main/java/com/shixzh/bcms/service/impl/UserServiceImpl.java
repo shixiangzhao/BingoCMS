@@ -15,7 +15,7 @@ import com.shixzh.bcms.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-	private static final Long THREAD_SLEEP_MILLIS = 5000l;
+	private static final Long THREAD_SLEEP_MILLIS = 3000l;
 
 	@Autowired
 	private UserDao userDao;
@@ -83,14 +83,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserPO> listUserTestPhantomRead(UserPO userPO) {
 		logger.info("UserServiceImpl -> listUserTestPhantomRead, userPO={}", userPO);
-		List<UserPO> lst = listUser(userPO);
+		List<UserPO> lst = userDao.listUser(userPO);
 		logger.info("UserServiceImpl -> listUserTestPhantomRead, List<UserPO> lst={}", lst);
 		try {
 			Thread.sleep(THREAD_SLEEP_MILLIS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		List<UserPO> lst2 = listUser(userPO);
+		List<UserPO> lst2 = userDao.listUser(userPO);
 		logger.info("UserServiceImpl -> listUserTestPhantomRead, List<UserPO> lst2={}", lst);
 		return lst2;
 	}
