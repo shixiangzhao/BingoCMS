@@ -16,7 +16,9 @@
 </script>
 
 <body>
-	<p>您已登陆</p>
-	<a href="${ctx}/system/index">index</a>
+	<p>
+		<span>已登陆</span>
+		<a href="${ctx}/system/index">index</a>
+	</p>
 </body>
 </html>

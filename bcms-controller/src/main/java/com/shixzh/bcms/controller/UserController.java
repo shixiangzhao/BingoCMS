@@ -27,7 +27,7 @@ public class UserController {
 	@RequestMapping(value = "/detail/{userId}", method = RequestMethod.GET)
 	public String getDetail(@PathVariable("userId") Long userId, Model model) {
 		logger.info("UserController -> getDetail, userId={}", userId);
-		UserPO userPO = userServce.getByUserIdTestDirtyRead(userId);
+		UserPO userPO = userServce.getByUserId(userId);
 		logger.info("UserController -> getDetail, userPO={}", userPO);
 		model.addAttribute("userPO", userPO);
 		return "userDetail";
@@ -72,7 +72,7 @@ public class UserController {
 			@RequestParam("userAgeStart") Integer userAgeStart, @RequestParam("userAgeEnd") Integer userAgeEnd, Model model) {
 		logger.info("UserController -> listUser start, userName={}", userName);
 		UserPO userPO = new UserPO(userName, userAgeStart, userAgeEnd);
-		List<UserPO> userPOs = userServce.listUserTestPhantomRead(userPO);
+		List<UserPO> userPOs = userServce.listUser(userPO);
 		logger.info("UserController -> listUser end.");
 		model.addAttribute("msg", "success");
 		model.addAttribute("userPOs", userPOs);
