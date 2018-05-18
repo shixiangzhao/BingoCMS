@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean class="com.taobao.hsf.app.spring.util.HSFSpringProviderBean">
+
+		<!-- 已有一个名称为HelloWorld的Spring Bean，此Bean实现的接口为com.taobao.hsf.test.HelloWorld，现需让其他功能模块能远程调用此Spring 
+			Bean； * 增加一个如下内容的Spring Bean XML： -->
+
+		<!-- serviceInterface必须配置[String]，为服务对外提供的接口 -->
+		<property name="serviceInterface">
+			<value>com.taobao.hsf.test.HelloWorld</value>
+		</property>
+
+		<!-- target必须配置[ref]，为需要发布为HSF服务的spring bean id -->
+		<property name="target">
+			<ref bean="HelloWorld" />
+		</property>
+
+		<!-- serviceVersion为可选配置[String]，含义为服务的版本，默认为1.0.0 -->
+		<property name="serviceVersion">
+			<value>1.1.0</value>
+			<!-- 不要有空白字符/回车换行 -->
+		</property>
+
+		<!-- serviceName为推荐配置[String]，含义为服务的名称，便于管理，默认为null -->
+		<property name="serviceName">
+			<value>HelloWorldService</value>
+		</property>
+
+		<!-- serviceDesc为可选配置[String]，含义为服务的描述信息，便于管理，默认为null -->
+		<property name="serviceDesc">
+			<value>HelloWorldService providered by HSF</value>
+		</property>
+
+		<!-- serviceGroup为可选配置[String]，含义为服务所属的组别，相当于此机器所在的VIP，默认为HSF -->
+		<property name="serviceGroup">
+			<value>HSF</value>
+		</property>
+
+		<!-- supportAsynCall为可选配置[true|false]，含义为标识此服务是否支持持久可靠的异步调用 默认值为false，也就是不支持持久可靠的异步调用，但仍然支持非持久可靠的oneway、future以及callback方式的异步调用 -->
+		<property name="supportAsynCall">
+			<value>false</value>
+		</property>
+
+		<!-- clientTimeout为可选配置[int]，含义为客户端调用此服务时的超时时间，单位为ms，默认为3000ms -->
+		<property name="clientTimeout">
+			<value>3000</value>
+		</property>
+
+		<!-- clientIdleTimeout为可选配置[int]，含义为客户端连接空闲的超时时间，单位为s，默认为600 -->
+		<property name="clientIdleTimeout">
+			<value>60</value>
+		</property>
+
+		<!-- serializeType为可选配置[String(hessian|java)]，含义为序列化类型，默认为hessian -->
+		<property name="serializeType">
+			<value>java</value>
+		</property>
+
+		<!-- methodToInjectConsumerIp为可选配置，含义为注入调用端IP的方法，这样业务服务也可以得知是哪个IP在调用，该方法的参数必须为String -->
+		<property name="methodToInjectConsumerIp">
+			<value>setConsumerIP</value>
+		</property>
+
+		<!-- methodSpecials为可选配置，含义为为方法单独配置超时时间，这样接口中的方法可以采用不同的超时时间 -->
+		<property name="methodSpecials">
+			<list>
+				<bean class="com.taobao.hsf.model.metadata.MethodSpecial">
+					<property name="methodName" value="sum" />
+					<property name="clientTimeout" value="10000" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 将此XML加入到Spring加载的applicationContext文件中；
+    按项目正常方式打包部署，启动JBoss，此HelloWorld就可被远程以HSF服务的方式调用了。 -->
+</beans>

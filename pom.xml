@@ -36,11 +36,19 @@
 		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
 		<javax.servlet.jsp-api.version>2.0</javax.servlet.jsp-api.version>
 		<javax.servlet.servlet-api.version>2.5</javax.servlet.servlet-api.version>
+		<com.taobao.hsf.LightApi.version>1.0.5</com.taobao.hsf.LightApi.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
 		<junit.version>3.8.1</junit.version>
 	</properties>
 
 	<dependencies>
+		<!-- com.taobao.hsf/LightApi -->
+		<dependency>
+			<groupId>com.taobao.hsf</groupId>
+			<artifactId>LightApi</artifactId>
+			<version>${com.taobao.hsf.LightApi.version}</version>
+		</dependency>
+
 		<!-- servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+	<bean id="CallHelloWorld"
+		class="com.taobao.hsf.app.spring.util.HSFSpringConsumerBean">
+
+		<!-- interfaceName必须配置[String]，为需要调用的服务的接口 -->
+		<property name="interfaceName">
+			<value>com.taobao.hsf.test.HelloWorld</value>
+		</property>
+
+		<!-- version为可选配置[String]，含义为需要调用的服务的版本，默认为1.0.0 -->
+		<property name="version">
+			<value>1.1.0</value>
+		</property>
+
+		<!-- group为可选配置[String]，含义为需要调用的服务所在的组，默认为HSF -->
+		<property name="group">
+			<value>HSF</value>
+		</property>
+
+		<!-- methodSpecials为可选配置，含义为为方法单独配置超时时间，这样接口中的方法可以采用不同的超时时间 -->
+		<property name="methodSpecials">
+			<list>
+				<bean class="com.taobao.hsf.model.metadata.MethodSpecial">
+					<property name="methodName" value="sum" />
+					<property name="clientTimeout" value="10000" />
+				</bean>
+			</list>
+		</property>
+
+		<!-- target为可选配置[String]，含义为需调用的服务的地址和端口 主要用于单元测试环境和hsf.runmode=0的开发环境中，在运行环境下，此属性将无效，而是采用配置中心推送回来的目标服务地址信息 -->
+		<property name="target">
+			<value>10.1.6.57:12200?_TIMEOUT=1000</value>
+		</property>
+
+		<!-- asyncallMethods为可选配置[List]，含义为调用此服务时需要采用异步调用的方法名列表以及异步调用的方式 默认为空集合，即所有方法都采用同步调用 -->
+		<property name="asyncallMethods">
+			<list>
+
+				<!-- 格式为： name:方法名;type:异步调用类型; type默认为oneway，支持的种类有：oneway、future、callback、reliable和reliablecallback: 
+					oneway的含义为单向的异步调用，即发起请求后不管执行结果，如果调用的目标服务器不可用，则此次调用会失败，但仅会在日志中记录;
+					future的含义为通过Future的方式去获取请求执行的结果， 例如先调用下远程的接口，接着继续做别的事情，然后再通过Future来获取结果;
+					callback的含义为当远程服务执行完毕后，会将结果回调此处所配置的callbackhandler;
+					reliable的含义为单向的可靠持久异步调用，和oneway的不同在于，即使调用的目标服务器暂时不可用，在其可用后仍然会保证调用成功;
+					reliablecallback的含义为当异步可靠的执行远程服务后，会将结果可靠的回调此处所配置的callbackhandler -->
+				<value>name:save</value>
+			</list>
+		</property>
+
+		<!-- 设置回调的处理器，此处理器不用实现HSF的任何接口，方法遵循以下约定即可 public void ${name}_callback(Object 
+			invokeContext, Object appResponse, Throwable t)，其中${name}即为发起调用的远程服务的方法名 -->
+		<property name="callbackHandler"
+			ref="PlugServiceCallbackHandler" />
+
+		<!-- 设置传递上下文的方式为接口方式，即在发起调用时先调用接口上的setInvokeContext方法传入上下文对象 -->
+		<property name="interfaceMethodToAttachContext"
+			value="setInvokeContext" />
+
+		<!-- 设置传递上下文的方式为ThreadLocal对象方式，即在发起调用时通过一个ThreadLocal对象来设置上下文对象，接口方式和ThreadLocal对象方式选其一即可 -->
+		<property name="invokeContextThreadLocal"
+			ref="invokeContextThreadLocal" />
+	</bean>
+
+	<!-- 将此XML加入到Spring加载的ApplicatonContext文件中去； 
+	按项目正常方式打包部署，启动JBoss，当存在接口为com.taobao.hsf.test.HelloWorld，版本为1.1.0的服务时，当调用CallHelloWorld时，就会自动的调用远程的服务 -->
+
+</beans>
+
+
+
+
