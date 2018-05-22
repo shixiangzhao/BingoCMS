@@ -73,6 +73,16 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<filter>
+	    <filter-name>ShiroFilter</filter-name>
+	    <filter-class>org.apache.shiro.web.servlet.IniShiroFilter</filter-class>
+	    <!-- no init-param means load the INI config from classpath:shiro.ini --> 
+	</filter>
+	<filter-mapping>
+	     <filter-name>ShiroFilter</filter-name>
+	     <url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- '/*'代表所有，包含.jsp、.jpg等等，'/'代表只有类似/system/view才用dispatcherServlet处理 -->
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>

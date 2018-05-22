@@ -2,8 +2,22 @@ package com.shixzh.bcms.framework;
 
 public class TestIsNull {
 
-	@SuppressWarnings("null")
 	public static void main(String[] args) {
+
+		// 测试自动解包
+		Integer iKey = new Integer(2);
+		System.out.println("Integer equal int: " + (iKey == 2));
+		switch (iKey) {
+		case 1:
+			System.out.println("iKey1");
+			break;
+		case 2:
+			System.out.println("iKey2");
+			break;
+		default:
+			System.out.println("iKey-1");
+			break;
+		}
 
 		// getXXX进行二次逻辑的，一定要判空
 		Byte key = null;
