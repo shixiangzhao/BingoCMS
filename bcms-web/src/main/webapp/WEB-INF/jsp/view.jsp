@@ -18,7 +18,7 @@
 <body>
 	<p>
 		<span>请登录</span>
-		<a href="${ctx}/system/login">login</a>
+		<a href="${ctx}/system/toLogin">login</a>
 	</p>
 </body>
 </html>

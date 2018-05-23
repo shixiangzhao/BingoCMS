@@ -5,6 +5,8 @@ public class UserPO {
 	private Long userId;
 	private String userName;
 	private Integer userAge;
+	private String userMobile;
+	private String userPassword;
 	private Integer userAgeStart;
 	private Integer userAgeEnd;
 
@@ -55,6 +57,22 @@ public class UserPO {
 		this.userAge = userAge;
 	}
 
+	public String getUserMobile() {
+		return userMobile;
+	}
+
+	public void setUserMobile(String userMobile) {
+		this.userMobile = userMobile;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
 	public Integer getUserAgeStart() {
 		return userAgeStart;
 	}
@@ -73,8 +91,10 @@ public class UserPO {
 
 	@Override
 	public String toString() {
-		return "UserPO [userId=" + userId + ", userName=" + userName + ", userAge=" + userAge + ", userAgeStart="
-				+ userAgeStart + ", userAgeEnd=" + userAgeEnd + "]";
+		return "UserPO [userId=" + userId + ", userName=" + userName + ", userAge=" + userAge + ", userMobile="
+				+ userMobile + ", userPassword=" + userPassword + ", userAgeStart=" + userAgeStart + ", userAgeEnd="
+				+ userAgeEnd + "]";
 	}
+
 
 }

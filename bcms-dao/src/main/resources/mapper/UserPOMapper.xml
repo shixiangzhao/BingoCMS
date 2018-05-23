@@ -5,9 +5,11 @@
     <id column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="user_age" property="userAge" jdbcType="INTEGER" />
+    <result column="user_mobile" property="userMobile" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List">
-	user_id, user_name, user_age
+	user_id, user_name, user_age, user_mobile, user_password
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.shixzh.bcms.po.UserPO" flushCache="true">
   	SELECT
@@ -39,6 +41,12 @@
   		<if test="userAge != null">
   			user_age,
   		</if>
+  		<if test="userMobile != null">
+  			user_mobile,
+  		</if>
+  		<if test="userPassword != null">
+  			user_password,
+  		</if>
   	</trim>
   	<trim prefix="VALUE (" suffix=")" suffixOverrides=",">
   		<if test="userName != null">
@@ -46,6 +54,12 @@
   		</if>
   		<if test="userAge != null">
   			#{userAge},
+  		</if>
+  		<if test="userMobile != null">
+  			#{userMobile},
+  		</if>
+  		<if test="userPassword != null">
+  			#{userPassword},
   		</if>
   	</trim>
   </insert>
@@ -57,6 +71,12 @@
   		</if>
   		<if test="userAge != null">
   			user_age = #{userAge},
+  		</if>
+  		<if test="userMobile != null">
+  			user_mobile = #{userMobile},
+  		</if>
+  		<if test="userPassword != null">
+  			user_password = #{userPassword},
   		</if>
   	</set>
   	WHERE user_id = #{userId}

@@ -12,13 +12,45 @@
 	value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" />
 <script type="text/javascript" src="${ctx}/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-	
+	function login() {
+		console.log("login start...");
+		var data = {
+			"userMobile" : $("#userMobile").val(),
+			"userPassword" : $("#userPassword").val()
+		}
+		$.ajax({
+			type : "POST",
+			url : "${ctx}/system/login",
+	        dataType: 'json',  
+            contentType:'application/json;charset=UTF-8', 
+			data : JSON.stringify(data),
+			success : function(e) {
+				console.log("okok:")
+				console.log(e)
+			}
+		});
+	}
 </script>
 
 <body>
-	<p>
-		<span>已登陆</span>
-		<a href="${ctx}/system/index">index</a>
-	</p>
+	<div>
+		<span>登陆页面</span> <br>
+		<div id="loginForm">
+			<table>
+				<tr>
+					<td>手机号：</td>
+					<td><input id="userMobile" type="text" name="userMobile" /></td>
+				</tr>
+				<tr>
+					<td>密码：</td>
+					<td><input id="userPassword" type="text" name="userPassword" /></td>
+				</tr>
+				<tr>
+					<td><input id="loginBtn" type="button" onclick="login()" value="登陆" /></td>
+					<td><input type="button" value="重置" /></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

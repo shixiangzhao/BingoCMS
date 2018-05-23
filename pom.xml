@@ -38,12 +38,25 @@
 		<javax.servlet.jsp-api.version>2.0</javax.servlet.jsp-api.version>
 		<javax.servlet.servlet-api.version>2.5</javax.servlet.servlet-api.version>
 		<com.taobao.hsf.LightApi.version>1.0.5</com.taobao.hsf.LightApi.version>
+		<com.fasterxml.jackson.core.jackson.version>2.9.5</com.fasterxml.jackson.core.jackson.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
 		<junit.version>3.8.1</junit.version>
 	</properties>
 
 	<dependencies>
-		<!-- org.apache.shiro -->
+		<!-- jackson用于前端数据传到后台，自动封装 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${com.fasterxml.jackson.core.jackson.version}</version>
+		</dependency>
+		<dependency>  
+		    <groupId>com.fasterxml.jackson.core</groupId>  
+		    <artifactId>jackson-databind</artifactId>  
+		    <version>${com.fasterxml.jackson.core.jackson.version}</version>  
+		</dependency> 
+
+		<!-- org.apache.shiro 用于权限控制-->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
@@ -55,7 +68,7 @@
 		    <version>${org.apache.shiro.version}</version>
 		</dependency>
 
-		<!-- com.taobao.hsf/LightApi -->
+		<!-- com.taobao.hsf/LightApi 用于hsf分布式 -->
 		<dependency>
 			<groupId>com.taobao.hsf</groupId>
 			<artifactId>LightApi</artifactId>
