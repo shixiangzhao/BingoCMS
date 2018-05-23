@@ -4,6 +4,7 @@ public class ReqUser {
 
 	private Long userId;
 	private String userName;
+	private Integer userAge;
 	private String userMobile;
 	private String userPassword;
 
@@ -21,6 +22,14 @@ public class ReqUser {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public Integer getUserAge() {
+		return userAge;
+	}
+
+	public void setUserAge(Integer userAge) {
+		this.userAge = userAge;
 	}
 
 	public String getUserMobile() {
@@ -41,8 +50,8 @@ public class ReqUser {
 
 	@Override
 	public String toString() {
-		return "ReqUser [userId=" + userId + ", userName=" + userName + ", userMobile=" + userMobile + ", userPassword="
-				+ userPassword + "]";
+		return "ReqUser [userId=" + userId + ", userName=" + userName + ", userAge=" + userAge + ", userMobile="
+				+ userMobile + ", userPassword=" + userPassword + "]";
 	}
 
 }

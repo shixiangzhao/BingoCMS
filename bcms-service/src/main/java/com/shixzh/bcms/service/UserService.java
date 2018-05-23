@@ -26,4 +26,6 @@ public interface UserService {
 	Integer updateUserTestDirtyRead(UserPO userPO);
 
 	List<UserPO> listUserTestPhantomRead(UserPO userPO);
+
+	UserPO getUserByMobile(String userMobile);
 }

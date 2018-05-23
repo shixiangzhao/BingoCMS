@@ -16,4 +16,6 @@ public interface UserDao {
 
 	Integer deleteUser(Long userId);
 
+	UserPO selectByMobile(String userMobile);
+
 }

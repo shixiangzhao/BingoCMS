@@ -95,4 +95,10 @@ public class UserServiceImpl implements UserService {
 		return lst2;
 	}
 
+	@Override
+	public UserPO getUserByMobile(String userMobile) {
+		logger.info("UserServiceImpl -> getUserByMobile, userMobile={}", userMobile);
+		return userDao.selectByMobile(userMobile);
+	}
+
 }

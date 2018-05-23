@@ -17,16 +17,16 @@
 		var data = {
 			"userMobile" : $("#userMobile").val(),
 			"userPassword" : $("#userPassword").val()
-		}
+		};
+
 		$.ajax({
 			type : "POST",
 			url : "${ctx}/system/login",
-	        dataType: 'json',  
-            contentType:'application/json;charset=UTF-8', 
+			dataType : 'json',
+			contentType : 'application/json;charset=UTF-8',
 			data : JSON.stringify(data),
 			success : function(e) {
-				console.log("okok:")
-				console.log(e)
+				console.log("okok:" + e)
 			}
 		});
 	}
