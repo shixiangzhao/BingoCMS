@@ -22,11 +22,14 @@
 		$.ajax({
 			type : "POST",
 			url : "${ctx}/system/login",
+			async: false,
 			dataType : 'json',
 			contentType : 'application/json;charset=UTF-8',
 			data : JSON.stringify(data),
 			success : function(e) {
-				console.log("okok:" + e)
+				console.log("login success...");
+				//等待登陆信息放入session中之后，再进行跳转
+				window.location.href="${ctx}/system/toIndex";
 			}
 		});
 	}

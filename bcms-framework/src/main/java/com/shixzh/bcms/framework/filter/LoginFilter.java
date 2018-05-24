@@ -38,7 +38,7 @@ public class LoginFilter implements Filter {
 		logger.info("LoginFilter -> doFilter, servletPath={}", servletPath);
 
 		HttpSession session = request.getSession();
-		String sessionKey = (String) session.getAttribute(Constant.SESSIONKEY);
+		Object sessionKey = session.getAttribute(Constant.SESSIONKEY);
 		logger.info("LoginFilter -> doFilter sessionKey=" + sessionKey);
 
 		// 登陆界面不进行过滤
@@ -46,7 +46,7 @@ public class LoginFilter implements Filter {
 			filterChain.doFilter(request, response);
 			logger.info("This is login page, doFilter end.");
 		} else {
-			if (!StringUtils.isEmpty(sessionKey)) {//登陆过的用户
+			if (sessionKey != null) {//登陆过的用户
 				filterChain.doFilter(request, response);
 				logger.info("You have login, sessionKey={}", sessionKey);
 			} else {//未登录则跳转到登陆页面

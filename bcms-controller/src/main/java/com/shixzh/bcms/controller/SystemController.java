@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.shixzh.bcms.controller.req.ReqUser;
 import com.shixzh.bcms.framework.common.CommonResult;
 import com.shixzh.bcms.framework.common.CommonResultCode;
+import com.shixzh.bcms.framework.constants.Constant;
 import com.shixzh.bcms.po.UserPO;
 import com.shixzh.bcms.service.SystemService;
 import com.shixzh.bcms.service.UserService;
@@ -47,17 +48,22 @@ public class SystemController {
 	@RequestMapping(value = "/toLogin", method = RequestMethod.GET)
 	public String toLogin(HttpServletRequest request) {
 		logger.info("SystemAction -> toLogin start...");
-		HttpSession session = request.getSession();
-		int peopleOnLine = (int) session.getAttribute("peopleOnLine");
-		// 假设用户输入的用户名密码正确，则放入sessionKey中，对应的value可以 是User对象，这里以字符串"test"代替
-		session.setAttribute("sessionKey", "test" + peopleOnLine);
-		logger.info("SystemAction -> toLogin end.");
 		return "login";
+	}
+
+	@RequestMapping(value = "/toIndex", method = RequestMethod.GET)
+	public String toIndex(@RequestParam(name = "name", required = false, defaultValue = "world") String name,
+			Model model) {
+		logger.info("SystemAction -> view start...");
+		systemService.toLogin();
+		model.addAttribute("msg", name);
+		logger.info("SystemAction -> view end, model={}", model);
+		return "index";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public CommonResult<Object> login(@RequestBody ReqUser reqUser, Model model) {
+	public CommonResult<Object> login(@RequestBody ReqUser reqUser, HttpServletRequest request) {
 		logger.info("SystemAction -> login start, reqUser={}", reqUser);
 		CommonResult<Object> commonResult = new CommonResult<>();
 		if (reqUser == null || StringUtils.isEmpty(reqUser.getUserMobile())
@@ -73,6 +79,9 @@ public class SystemController {
 		UserPO userPO = userService.getUserByMobile(userMobile);
 		logger.info("SystemAction -> login, userPO={}", userPO);
 		if (userPassword.equals(userPO.getUserPassword())) {
+			HttpSession session = request.getSession();
+			// 用户输入的用户名密码正确，则放入sessionKey中，对应的value是User对象，
+			session.setAttribute(Constant.SESSIONKEY, userPO);
 			commonResult.setCode(CommonResultCode.SUCCESS.getCode());
 			commonResult.setMsg(CommonResultCode.SUCCESS.getMsg());
 			logger.info("SystemAction -> login end, commonResult={}", commonResult);

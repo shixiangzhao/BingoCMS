@@ -30,9 +30,7 @@
 	<listener>
 		<listener-class>com.shixzh.bcms.framework.listener.MyHttpSessionListener</listener-class>
 	</listener>
-	<!-- <filter> <filter-name>logFilter</filter-name> <filter-class>com.shixzh.bcms.framework.filter.LogFilter</filter-class> 
-		</filter> <filter-mapping> <filter-name>logFilter</filter-name> <url-pattern>/*</url-pattern> 
-		</filter-mapping> -->
+
 	<filter>
 		<filter-name>urlEncodeFilter</filter-name>
 		<filter-class>com.shixzh.bcms.framework.filter.UrlEncodeFilter</filter-class>
@@ -50,14 +48,14 @@
 		<filter-name>loginFilter</filter-name>
 		<filter-class>com.shixzh.bcms.framework.filter.LoginFilter</filter-class>
 		<init-param>
-			<!-- 跳转登陆页面的action -->
 			<param-name>toLoginUrl</param-name>
-			<param-value>/system/view</param-value>
+			<param-value>/system/toLogin</param-value>
+			<description>跳转登陆页面的action</description>
 		</init-param>
 		<init-param>
-			<!-- 未登录用户，登陆的action -->
 			<param-name>loginUrl</param-name>
-			<param-value>/system/toLogin</param-value>
+			<param-value>/system/login</param-value>
+			<description>未登录用户，登陆的action</description>
 		</init-param>
 	</filter>
 	<filter-mapping>
@@ -75,6 +73,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping> -->
 
+	<!-- 对于静态资源使用tomcat容器默认的servlet处理 -->
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.js</url-pattern>
