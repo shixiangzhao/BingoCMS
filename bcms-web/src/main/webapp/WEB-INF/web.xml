@@ -9,7 +9,7 @@
 	<!-- 由于spring-controller.xml位于外部模块中，直接引入不了 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/spring-controller.xml</param-value>
+		<param-value>classpath:spring/spring-controller.xml,classpath:shiro/spring-shiro.xml</param-value>
 	</context-param>
 
 	<!-- 配置logback -->
@@ -54,7 +54,7 @@
 		</init-param>
 		<init-param>
 			<param-name>loginUrl</param-name>
-			<param-value>/system/login</param-value>
+			<param-value>/system/checkLogin</param-value>
 			<description>未登录用户，登陆的action</description>
 		</init-param>
 	</filter>
@@ -73,11 +73,25 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping> -->
 
-	<!-- 对于静态资源使用tomcat容器默认的servlet处理 -->
+	<!-- shiro过滤器 -->
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+
+	<!-- 对于静态资源使用tomcat容器默认的servlet处理 
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.js</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 
 	<!-- '/*'代表所有，包含.jsp、.jpg等等，'/'代表只有类似/system/view才用dispatcherServlet处理 -->
 	<servlet>

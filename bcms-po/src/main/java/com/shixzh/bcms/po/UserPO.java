@@ -1,5 +1,7 @@
 package com.shixzh.bcms.po;
 
+import java.util.List;
+
 public class UserPO {
 
 	private Long userId;
@@ -7,6 +9,8 @@ public class UserPO {
 	private Integer userAge;
 	private String userMobile;
 	private String userPassword;
+	private List<UserGroupPO> groupList; // 权限组
+
 	private Integer userAgeStart;
 	private Integer userAgeEnd;
 
@@ -89,11 +93,19 @@ public class UserPO {
 		this.userAgeEnd = userAgeEnd;
 	}
 
+	public List<UserGroupPO> getGroupList() {
+		return groupList;
+	}
+
+	public void setGroupList(List<UserGroupPO> groupList) {
+		this.groupList = groupList;
+	}
+
 	@Override
 	public String toString() {
 		return "UserPO [userId=" + userId + ", userName=" + userName + ", userAge=" + userAge + ", userMobile="
-				+ userMobile + ", userPassword=" + userPassword + ", userAgeStart=" + userAgeStart + ", userAgeEnd="
-				+ userAgeEnd + "]";
+				+ userMobile + ", userPassword=" + userPassword + ", groupList=" + groupList + ", userAgeStart="
+				+ userAgeStart + ", userAgeEnd=" + userAgeEnd + "]";
 	}
 
 

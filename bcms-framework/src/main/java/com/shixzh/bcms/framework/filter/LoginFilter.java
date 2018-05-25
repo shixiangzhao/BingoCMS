@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.shixzh.bcms.framework.constants.Constant;
-import com.shixzh.bcms.framework.util.StringUtils;
 
 public class LoginFilter implements Filter {
 

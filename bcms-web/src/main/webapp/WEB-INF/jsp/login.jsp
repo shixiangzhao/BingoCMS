@@ -21,7 +21,7 @@
 
 		$.ajax({
 			type : "POST",
-			url : "${ctx}/system/login",
+			url : "${ctx}/system/checkLogin",
 			async: false,
 			dataType : 'json',
 			contentType : 'application/json;charset=UTF-8',

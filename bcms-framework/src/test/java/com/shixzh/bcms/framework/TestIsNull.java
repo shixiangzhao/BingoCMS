@@ -1,8 +1,16 @@
 package com.shixzh.bcms.framework;
 
+import com.shixzh.bcms.po.UserPO;
+
 public class TestIsNull {
 
 	public static void main(String[] args) {
+
+		// 对象set null
+		UserPO userPO = new UserPO();
+		String userMobile = null;
+		userPO.setUserMobile(userMobile);
+		System.out.println("对象set null成功");
 
 		// 测试自动解包
 		Integer iKey = new Integer(2);
