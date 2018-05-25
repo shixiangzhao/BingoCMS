@@ -1,8 +1,5 @@
 package com.shixzh.bcms.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +23,6 @@ import com.shixzh.bcms.framework.common.CommonResult;
 import com.shixzh.bcms.framework.common.CommonResultCode;
 import com.shixzh.bcms.framework.constants.Constant;
 import com.shixzh.bcms.framework.util.DecriptUtil;
-import com.shixzh.bcms.framework.util.JSONUtils;
 import com.shixzh.bcms.po.UserPO;
 import com.shixzh.bcms.service.SystemService;
 import com.shixzh.bcms.service.UserService;
@@ -111,29 +107,33 @@ public class SystemController {
 	 */
 	@RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
 	@ResponseBody
-	public String checkLogin(@RequestBody ReqUser reqUser, HttpServletRequest request) throws Exception {
+	public CommonResult<Object> checkLogin(@RequestBody ReqUser reqUser, HttpServletRequest request) throws Exception {
 		logger.info("SystemAction -> checkLogin start, reqUser={}", reqUser);
 		String userMobile = reqUser.getUserMobile();
 		String userPassword = reqUser.getUserPassword();
 		
 
 		UserPO userPO = userService.getUserByMobile(userMobile);
-		logger.info("SystemAction -> login, userPO={}", userPO);
+		logger.info("SystemAction -> checkLogin, userPO={}", userPO);
 		//userRealm.checkPermission(, );
 
-		Map<String, Object> result = new HashMap<String, Object>();
 		try {
 			UsernamePasswordToken token = new UsernamePasswordToken(userMobile, DecriptUtil.MD5(userPassword));
 			Subject currentUser = SecurityUtils.getSubject();
 			if (!currentUser.isAuthenticated()) { //未授权则开启验证
+				logger.error("SystemAction -> checkLogin, start to authenticate...");
 				// 使用shiro来验证
 				token.setRememberMe(true);
 				currentUser.login(token);// 验证角色和权限
 			}
 		} catch (Exception ex) {
+			logger.error("SystemAction -> checkLogin, no login authentication: {}", ex);
 			throw new Exception(CommonResultCode.PRIVILEGE_ERROR.getMsg());
 		}
-		result.put("success", true);
-		return JSONUtils.toJSONString(result);
+
+		CommonResult<Object> commonResult = new CommonResult<>();
+		commonResult.setCode(CommonResultCode.SUCCESS.getCode());
+		commonResult.setMsg(CommonResultCode.SUCCESS.getMsg());
+		return commonResult;
 	} 
 }

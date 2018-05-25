@@ -21,6 +21,11 @@
 			<artifactId>bcms-controller</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.shixzh.bcms</groupId>
+			<artifactId>bcms-realm</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
