@@ -11,8 +11,8 @@
 	<!--访问静态资源（假如没找到相应的控制器就去找静态资源，如果都没有则返回404） 
 	<mvc:default-servlet-handler /> -->
 
-	<!--对静态资源文件的访问 -->
-	<mvc:resources mapping="/js/**" location="/js/" />
+	<!--对静态资源文件的访问 
+	<mvc:resources mapping="/js/**" location="/js/" />-->
 
 	<!-- 配置jsp 显示ViewResolver -->
 	<bean

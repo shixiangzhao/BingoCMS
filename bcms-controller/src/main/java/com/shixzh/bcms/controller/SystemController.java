@@ -109,16 +109,8 @@ public class SystemController {
 	@ResponseBody
 	public CommonResult<Object> checkLogin(@RequestBody ReqUser reqUser, HttpServletRequest request) throws Exception {
 		logger.info("SystemAction -> checkLogin start, reqUser={}", reqUser);
-		String userMobile = reqUser.getUserMobile();
-		String userPassword = reqUser.getUserPassword();
-		
-
-		UserPO userPO = userService.getUserByMobile(userMobile);
-		logger.info("SystemAction -> checkLogin, userPO={}", userPO);
-		//userRealm.checkPermission(, );
-
 		try {
-			UsernamePasswordToken token = new UsernamePasswordToken(userMobile, DecriptUtil.MD5(userPassword));
+			UsernamePasswordToken token = new UsernamePasswordToken(reqUser.getUserMobile(), DecriptUtil.MD5(reqUser.getUserPassword()));
 			Subject currentUser = SecurityUtils.getSubject();
 			if (!currentUser.isAuthenticated()) { //未授权则开启验证
 				logger.error("SystemAction -> checkLogin, start to authenticate...");

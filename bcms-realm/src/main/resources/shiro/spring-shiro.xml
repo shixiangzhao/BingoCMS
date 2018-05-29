@@ -22,14 +22,14 @@
 	<bean id="shiroFilter"
 		class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login.jhtml" />
-		<property name="successUrl" value="/loginsuccess.jhtml" />
+		<property name="loginUrl" value="/system/checkLogin" />
+		<property name="successUrl" value="/system/index" />
 		<property name="unauthorizedUrl" value="/error.jhtml" />
 		<property name="filterChainDefinitions">
 			<value>
 				/index.jhtml = authc
 				/login.jhtml = anon
-				/checkLogin.json = anon
+				/system/checkLogin = anon
 				/loginsuccess.jhtml = anon
 				/logout.json = anon
 				/** = authc
@@ -57,4 +57,4 @@
 		<property name="securityManager" ref="securityManager" />
 	</bean>
 
-</beans>  
+</beans>
