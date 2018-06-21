@@ -43,6 +43,7 @@ public class LambdaForJava8 {
 		for (Map.Entry<K, V> entry : map.entrySet()) {
 			System.out.println("key=" + entry.getKey() + ", value=" + entry.getValue());
 		}
+		System.out.println("---------------------------------------------");
 	}
 
 	public static Map<Long, String> getIdNameMap(List<Customer> list) {
