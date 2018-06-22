@@ -32,6 +32,7 @@ public class OptionalOfNullable {
             if ("zhangsan".equals(name)){
                 return user;
             }
+            return null;
         } else {
             UserPO userPO = new UserPO();
             userPO.setUserName("zhangsan");
