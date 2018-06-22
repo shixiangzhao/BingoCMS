@@ -1,4 +1,4 @@
-package com.shixzh.bcms.framework;
+package com.shixzh.bcms.framework.java8;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
