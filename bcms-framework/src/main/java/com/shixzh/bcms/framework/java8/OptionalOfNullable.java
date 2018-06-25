@@ -11,7 +11,7 @@ public class OptionalOfNullable {
             return user;
         } else {
             UserPO userPO = new UserPO();
-            userPO.setUserName("zhangsan");
+            userPO.setUserName("zhangwu");
             return userPO;
         }
     }
@@ -21,7 +21,7 @@ public class OptionalOfNullable {
                 .filter(u -> "zhangsan".equals(u.getUserName()))
                 .orElseGet(() -> {
                     UserPO userPO = new UserPO();
-                    userPO.setUserName("zhangsan");
+                    userPO.setUserName("zhangwu");
                     return userPO;
                 });
     }

@@ -31,7 +31,7 @@ public class TestOptionalOfNullable {
         paramUserPO.setUserName("zhangsi");
         UserPO userPO = optionalOfNullable.getUser(paramUserPO);
         System.out.println(userPO);
-        Assert.assertEquals("User isn't Zhang San.","zhangsan",userPO.getUserName());
+        Assert.assertEquals("User isn't Zhang San.","zhangwu",userPO.getUserName());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TestOptionalOfNullable {
         paramUserPO.setUserName("zhangsi");
         UserPO userPO = optionalOfNullable.getUserNormal(paramUserPO);
         System.out.println(userPO);
-        Assert.assertEquals("User isn't Zhang San.","zhangsan",userPO.getUserName());
+        Assert.assertEquals("User isn't Zhang San.","zhangwu",userPO.getUserName());
     }
 
 }
