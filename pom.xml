@@ -39,6 +39,7 @@
 		<javax.servlet.jsp-api.version>2.0</javax.servlet.jsp-api.version>
 		<javax.servlet.servlet-api.version>2.5</javax.servlet.servlet-api.version>
 		<com.taobao.hsf.LightApi.version>1.0.5</com.taobao.hsf.LightApi.version>
+		<com.alibaba.rocketmq.version>3.6.2.Final</com.alibaba.rocketmq.version>
 		<com.fasterxml.jackson.core.jackson.version>2.9.5</com.fasterxml.jackson.core.jackson.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
 		<junit.version>3.8.1</junit.version>
@@ -85,6 +86,13 @@
 			<artifactId>LightApi</artifactId>
 			<version>${com.taobao.hsf.LightApi.version}</version>
 		</dependency>
+		<!-- com.alibaba.rocketmq 用于mq发送消息 -->
+		<dependency>
+			<groupId>com.alibaba.rocketmq</groupId>
+			<artifactId>rocketmq-client</artifactId>
+			<version>${com.alibaba.rocketmq.version}</version>
+		</dependency>
+
 
 		<!-- servlet-api -->
 		<dependency>
@@ -245,7 +253,6 @@
 								<encoding>UTF-8</encoding>
 								<consoleOutput>true</consoleOutput>
 								<failsOnError>true</failsOnError>
-								<linkXRef>false</linkXRef>
 								<failOnViolation>true</failOnViolation>
 							</configuration>
 							<goals>
