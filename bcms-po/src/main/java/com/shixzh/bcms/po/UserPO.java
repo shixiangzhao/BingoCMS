@@ -7,6 +7,7 @@ public class UserPO {
 	private Long userId;
 	private String userName;
 	private Integer userAge;
+	private boolean isPaidMember;
 	private String userMobile;
 	private String userPassword;
 	private List<UserGroupPO> groupList; // 权限组
@@ -101,11 +102,27 @@ public class UserPO {
 		this.groupList = groupList;
 	}
 
+	public boolean getIsPaidMember() {
+		return isPaidMember;
+	}
+
+	public void setIsPaidMember(boolean paidMember) {
+		isPaidMember = paidMember;
+	}
+
 	@Override
 	public String toString() {
-		return "UserPO [userId=" + userId + ", userName=" + userName + ", userAge=" + userAge + ", userMobile="
-				+ userMobile + ", userPassword=" + userPassword + ", groupList=" + groupList + ", userAgeStart="
-				+ userAgeStart + ", userAgeEnd=" + userAgeEnd + "]";
+		return "UserPO{" +
+				"userId=" + userId +
+				", userName='" + userName + '\'' +
+				", userAge=" + userAge +
+				", isPaidMember=" + isPaidMember +
+				", userMobile='" + userMobile + '\'' +
+				", userPassword='" + userPassword + '\'' +
+				", groupList=" + groupList +
+				", userAgeStart=" + userAgeStart +
+				", userAgeEnd=" + userAgeEnd +
+				'}';
 	}
 
 

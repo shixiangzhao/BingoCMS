@@ -1,5 +1,7 @@
 package com.shixzh.bcms.framework.enums;
 
+import java.util.EnumSet;
+
 public enum OperationEnum2 {
     PLUS("+") {
         double apply(double x, double y) {
@@ -23,6 +25,7 @@ public enum OperationEnum2 {
     };
 
     private final String symbol;
+    private EnumSet enumSet;
 
     OperationEnum2(String symbol) {
         this.symbol = symbol;
