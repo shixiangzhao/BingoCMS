@@ -35,6 +35,9 @@
 		<org.mybatis.mybatis.version>3.4.4</org.mybatis.mybatis.version>
 		<org.mybatis.mybatis-spring.version>1.3.1</org.mybatis.mybatis-spring.version>
 		<org.apache.shiro.version>1.4.0</org.apache.shiro.version>
+		<org.apache.poi.version>3.9</org.apache.poi.version>
+		<org.apache.commons.version>3.7</org.apache.commons.version>
+		<com.google.guava.version>26.0-jre</com.google.guava.version>
 		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
 		<javax.servlet.jsp-api.version>2.0</javax.servlet.jsp-api.version>
 		<javax.servlet.servlet-api.version>2.5</javax.servlet.servlet-api.version>
@@ -46,6 +49,34 @@
 	</properties>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${org.apache.commons.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${com.google.guava.version}</version>
+		</dependency>
+		<!-- poi office -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${org.apache.poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${org.apache.poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>${org.apache.poi.version}</version>
+		</dependency>
 		<!-- jackson用于前端数据传到后台，自动封装 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
